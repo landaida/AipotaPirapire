@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">AipotaPirapire</string>
     <string name="hello_world">Ola mundo!</string>
+    <string name="tab1_title">Serviços</string>
+    <string name="tab2_title">Historial</string>
+    <string name="action_settings">Configurações</string>
+    <string name="drawer_close">Fechar</string>
+    <string name="drawer_open">Abrir</string>
 </resources>
