@@ -2,53 +2,40 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="py.com.aipotapirapire.aipotapirapire.util.StringUtils"/>
-        <variable name="user" type="py.com.aipotapirapire.aipotapirapire.model.User"/>
+
+        <import type="py.com.aipotapirapire.aipotapirapire.util.StringUtils" />
+
+        <variable
+            name="user"
+            type="py.com.aipotapirapire.aipotapirapire.model.User" />
+        <variable name="total" type="int"/>
     </data>
+
     <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        >
+        android:fitsSystemWindows="true">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:padding="@dimen/activity_horizontal_margin">
 
-
-
             <TextView
-                android:id="@+id/userText"
-                android:layout_width="wrap_content"
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 style="@android:style/TextAppearance.DeviceDefault.Large"
-                android:layout_centerInParent="true"
-                android:text="@{user.firstName}"/>
+                android:text="@{@string/lista_no(total)}"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userText"
-                android:layout_alignParentRight="true"
-                android:text="@{StringUtils.capitalize(user.lastName)}"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/desc"
+                />
 
-
-            <ImageButton
-                android:id="@+id/nextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/ic_action_refresh"/>
-            <Button
-                android:text="List"
-                android:id="@+id/listButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/ic_action_refresh"/>
         </RelativeLayout>
     </android.support.v4.widget.DrawerLayout>
 </layout>

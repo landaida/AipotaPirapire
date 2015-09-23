@@ -5,11 +5,11 @@ package py.com.aipotapirapire.aipotapirapire;
  */
 
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import java.io.IOException;
 import java.util.List;
 
+import py.com.aipotapirapire.aipotapirapire.adapter.UserAdapter;
 import py.com.aipotapirapire.aipotapirapire.dao.UserDao;
 import py.com.aipotapirapire.aipotapirapire.databinding.Tab1Binding;
 import py.com.aipotapirapire.aipotapirapire.model.User;
@@ -26,7 +27,7 @@ import py.com.aipotapirapire.aipotapirapire.util.LogUtil;
 
 
 public class Tab1 extends Fragment {
-
+    private UserAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_1, container, false);
@@ -42,6 +43,15 @@ public class Tab1 extends Fragment {
 
         binding.setUser(user);
 
+
+        binding.setTotal(UserDao.getTotal());
+        adapter = new UserAdapter(UserDao.lista);
+        binding.recyclerView.setAdapter(adapter);
+        /*RecyclerView.ItemDecoration itemDecoration =
+                new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        binding.recyclerView.addItemDecoration(itemDecoration);*/
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+/*
         binding.nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +66,7 @@ public class Tab1 extends Fragment {
                 startActivity(intent);
             }
         });
+*/
         this.getUsers();
 
         return v;
@@ -68,7 +79,7 @@ public class Tab1 extends Fragment {
             HttpUtility.sendGetRequest(requestURL);
             String[] response = HttpUtility.readMultipleLinesRespone();
             for (String line : response) {
-                System.out.println(line);
+                LogUtil.i(line);
                 try {
                     User user = JsonUtils.getObject("{\"firstName\":\"Ariel\", \"lastName\":\"Landaida\"}", User.class);
                     LogUtil.i(user.getFirstName());
