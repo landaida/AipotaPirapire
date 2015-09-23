@@ -1,17 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="py.com.aipotapirapire.aipotapirapire.util.StringUtils"/>
+        <variable name="user" type="py.com.aipotapirapire.aipotapirapire.model.User"/>
+    </data>
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:padding="@dimen/activity_horizontal_margin">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Tab 1 says Hello :D"
-        android:id="@+id/textView"
-        android:textColor="@color/tabsScrollColor"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/userText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.DeviceDefault.Large"
+                android:layout_centerInParent="true"
+                android:text="@{user.firstName}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userText"
+                android:layout_alignParentRight="true"
+                android:text="@{StringUtils.capitalize(user.lastName)}"/>
+
+
+            <ImageButton
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_action_refresh"/>
+            <Button
+                android:text="List"
+                android:id="@+id/listButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_action_refresh"/>
+        </RelativeLayout>
+    </android.support.v4.widget.DrawerLayout>
+</layout>
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Tab 1 says Hello :D"
+            android:id="@+id/textView"
+            android:textColor="@color/tabsScrollColor"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>-->

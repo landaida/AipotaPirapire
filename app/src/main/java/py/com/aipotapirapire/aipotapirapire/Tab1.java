@@ -12,12 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.IOException;
+import java.util.List;
+
+import py.com.aipotapirapire.aipotapirapire.model.User;
+import py.com.aipotapirapire.aipotapirapire.util.HttpUtility;
+import py.com.aipotapirapire.aipotapirapire.util.JsonUtils;
+import py.com.aipotapirapire.aipotapirapire.util.LogUtil;
+
 
 public class Tab1 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.tab_1,container,false);
+        View v = inflater.inflate(R.layout.tab_1, container, false);
         return v;
     }
+
+
 }

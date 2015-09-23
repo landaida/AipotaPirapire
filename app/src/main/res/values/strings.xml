@@ -11,8 +11,14 @@
         <item>@string/tab2_title</item>
     </string-array>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawer_open">Abrir</string>
     <string name="drawer_close">Cerrar</string>
+
+
+
+    <string name="title_activity_list">Lista de usuarios</string>
+
+    <string name="lista_no">%d usuarios</string>
 </resources>
