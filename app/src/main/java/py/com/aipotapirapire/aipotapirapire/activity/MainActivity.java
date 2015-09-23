@@ -1,7 +1,5 @@
 package py.com.aipotapirapire.aipotapirapire.activity;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
@@ -15,11 +13,8 @@ import android.view.View;
 import java.io.IOException;
 import java.util.List;
 
-import py.com.aipotapirapire.aipotapirapire.ListActivity;
 import py.com.aipotapirapire.aipotapirapire.R;
 import py.com.aipotapirapire.aipotapirapire.ViewPagerAdapter;
-import py.com.aipotapirapire.aipotapirapire.dao.UserDao;
-import py.com.aipotapirapire.aipotapirapire.databinding.Tab1Binding;
 import py.com.aipotapirapire.aipotapirapire.model.User;
 import py.com.aipotapirapire.aipotapirapire.util.HttpUtility;
 import py.com.aipotapirapire.aipotapirapire.util.JsonUtils;
@@ -82,33 +77,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         StrictMode.setThreadPolicy(policy);
 
 
-        final Tab1Binding binding = DataBindingUtil.setContentView(this, R.layout.tab_1);
-        User user;
-
-        if (this.getIntent().hasExtra("index")) {
-            user = UserDao.lista.get(this.getIntent().getIntExtra("index", 0));
-        } else {
-            user = UserDao.getRandomQuote();
-        }
-
-        binding.setUser(user);
-
-        binding.nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                User user = UserDao.getRandomQuote();
-                binding.setUser(user);
-            }
-        });
-        binding.listButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ListActivity.class);
-                startActivity(intent);
-            }
-        });
-        this.getUsers();
-
 
     }
 
@@ -139,29 +107,5 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     public void onDrawerItemSelected(View view, int position) {
 
-    }
-
-    public void getUsers() {
-        String requestURL = "getEmpresas";
-        try {
-            HttpUtility.sendGetRequest(requestURL);
-            String[] response = HttpUtility.readMultipleLinesRespone();
-            for (String line : response) {
-                System.out.println(line);
-                try {
-                    User user = JsonUtils.getObject("{\"firstName\":\"Ariel\", \"lastName\":\"Landaida\"}", User.class);
-                    LogUtil.i(user.getFirstName());
-                    LogUtil.i(user.getLastName());
-
-                    List<User> users = JsonUtils.getList("[{\"firstName\":\"Ariel\", \"lastName\":\"Landaida\"}, {\"firstName\":\"Hernan\", \"lastName\":\"Duarte\"}]", User.class);
-                    LogUtil.i(users.get(1).getFirstName());
-                } catch (Exception e) {
-                    LogUtil.e(e.getMessage());
-                }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        HttpUtility.disconnect();
     }
 }
